@@ -1,6 +1,7 @@
 // src/context/AppContext.tsx
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
+
 interface User {
     name: string;
     accountBalance: number;
@@ -14,11 +15,17 @@ interface Loan {
     purpose: string;
     status: 'active' | 'completed';
 }
+interface Transaction {
+    date: string;
+    amount: number;
+    type: 'credit' | 'debit';
+}
+
 
 interface AppContextType {
     user: User | null;
-    loans: Loan;
-    transactions: { data: string; date: string; amount: number; type: 'credit' | 'debit' }[];
+    loans: Loan[];
+    transactions: Transaction[];
     setLoans: React.Dispatch<React.SetStateAction<Loan[]>>;
 }
 
@@ -27,7 +34,9 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [user, setUser] = useState<User | null>(null);
     const [loans, setLoans] = useState<Loan[]>([]);
-    const [transactions, setTransactions] = useState<{ date: string; amount: number; type: 'credit' | 'debit' }[]>([]);
+    const [transactions, setTransactions] = useState<Transaction[]>([]);
+
+    // const [transactions, setTransactions] = useState<{ date: string; amount: number; type: 'credit' | 'debit' }[]>([]);
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -37,7 +46,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         };
 
         const fetchTransactions = async () => {
-            const data = [
+            const data:Transaction[]  = [
                 { date: '2025-01-01', amount: 200, type: 'credit'},
                 { date: '2025-01-02', amount: 150, type: 'debit' },
                 { date: '2025-01-03', amount: 300, type: 'credit'},
