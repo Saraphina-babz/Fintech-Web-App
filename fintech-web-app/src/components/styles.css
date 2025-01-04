@@ -1,0 +1,53 @@
+.nav {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 10px 20px;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.links {
+    display: flex;
+    flex-direction: row;
+    font-size: 14px;
+}
+
+.links.open {
+    display: block;
+}
+
+.toggle {
+    display:none;
+}
+
+@media (max-width: 768px) {
+    .links {
+        display: none; 
+        flex-direction: column;
+    }
+
+    .toggle {
+        display: flex; 
+    }
+
+    .links.open {
+        display: none; 
+    }
+} 
+
+
+
+
+
+.active {
+    font-weight: bold; 
+    gap: 10px;
+    color: hsl(0, 0%, 41%);
+    border-radius: 5px;
+    align-items: center;
+}
+
+.userh2{
+    color: whitesmoke;
+}

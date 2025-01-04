@@ -1,11 +1,9 @@
-// src/context/AppContext.tsx
 import React, { createContext, useContext, useState, useEffect } from 'react';
-
 
 interface User {
     name: string;
     accountBalance: number;
-    recentTransactions: { data: string; date: string; amount: number; type: 'credit' | 'debit' }[];
+    recentTransactions: { date: string; amount: number; type: 'credit' | 'debit' }[];
 }
 
 interface Loan {
@@ -15,12 +13,12 @@ interface Loan {
     purpose: string;
     status: 'active' | 'completed';
 }
+
 interface Transaction {
     date: string;
     amount: number;
     type: 'credit' | 'debit';
 }
-
 
 interface AppContextType {
     user: User | null;
@@ -36,21 +34,19 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     const [loans, setLoans] = useState<Loan[]>([]);
     const [transactions, setTransactions] = useState<Transaction[]>([]);
 
-    // const [transactions, setTransactions] = useState<{ date: string; amount: number; type: 'credit' | 'debit' }[]>([]);
-
     useEffect(() => {
         const fetchUser = async () => {
-            const response = await fetch('https://jsonplaceholder.typicode.com/users/1'); // Mock user data
+            const response = await fetch('https://jsonplaceholder.typicode.com/users/1'); 
             const data: User = await response.json();
-            setUser({ ...data, accountBalance: 1000, recentTransactions: [] }); // Mock account balance
+            setUser({ ...data, accountBalance: 1000, recentTransactions: transactions });
         };
 
         const fetchTransactions = async () => {
-            const data:Transaction[]  = [
-                { date: '2025-01-01', amount: 200, type: 'credit'},
+            const data: Transaction[] = [
+                { date: '2025-01-01', amount: 200, type: 'credit' },
                 { date: '2025-01-02', amount: 150, type: 'debit' },
-                { date: '2025-01-03', amount: 300, type: 'credit'},
-                {date:  '2024-12-31', amount: 250, type: 'debit' },
+                { date: '2025-01-03', amount: 300, type: 'credit' },
+                { date: '2024-12-31', amount: 250, type: 'debit' },
             ];
             setTransactions(data);
         };
@@ -63,8 +59,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
             setLoans(data);
         };
 
-        fetchUser();
-        fetchTransactions();
+        fetchTransactions().then(() => {
+            fetchUser();
+        });
         fetchLoans();
     }, []);
 

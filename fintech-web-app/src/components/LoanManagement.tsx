@@ -1,4 +1,3 @@
-// src/components/LoanManagement.tsx
 import React, { useState } from 'react';
 import { useAppContext } from '../context/AppContext';
 
@@ -19,15 +18,15 @@ const LoanManagement: React.FC = () => {
     };
 
     return (
-        <div>
-            <h1 className="text-2xl font-bold mb-4">Loan Management</h1>
-            <h2 className="text-lg">Active Loans</h2>
+        <div className='pt-12'>
+            <h1 className="text-2xl text-white font-bold mb-4">Loan Management</h1>
+            <h2 className="text-lg text-white">Active Loans</h2>
             <ul>
                 {loans.filter(loan => loan.status === 'active').map(loan => (
-                    <li key={loan.id}>Loan Amount: ${loan.amount}, Tenure: {loan.tenure} months</li>
+                    <li  className='text-white' key={loan.id}>Loan Amount: ${loan.amount}, Tenure: {loan.tenure} months</li>
                 ))}
             </ul>
-            <h2 className="text-lg mt-4">Request a New Loan</h2>
+            <h2 className="text-lg text-white mt-4">Request a New Loan</h2>
             <input type="number" placeholder="Amount" value={newLoan.amount} onChange={e => setNewLoan({ ...newLoan, amount: e.target.value })} className="border p-2 mr-2" />
             <input type="number" placeholder="Tenure" value={newLoan.tenure} onChange={e => setNewLoan({ ...newLoan, tenure: e.target.value })} className="border p-2 mr-2" />
             <input type="text" placeholder="Purpose" value={newLoan.purpose} onChange={e => setNewLoan({ ...newLoan, purpose: e.target.value })} className="border p-2 mr-2" />

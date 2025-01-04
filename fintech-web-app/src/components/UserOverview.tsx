@@ -1,4 +1,3 @@
-// src/components/UserOverview.tsx
 import React from 'react';
 import { useAppContext } from '../context/AppContext';
 
@@ -6,13 +5,13 @@ const UserOverview: React.FC = () => {
     const { user } = useAppContext();
 
     return (
-        <div className="mb-6">
-            <h1 className="text-2xl font-bold mb-4">User Overview</h1>
+        <div className="pt-12">
+            <h1 className="text-2xl text-white font-bold mb-4">Welcome Back</h1>
             {user ? (
                 <>
-                    <p>Name: {user.name}</p>
-                    <p>Account Balance: ${user.accountBalance}</p>
-                    <h2 className="text-lg mt-4">Recent Transactions</h2>
+                    <p className='text-white'>Name: {user.name}</p>
+                    <p className='text-white'>Account Balance: ${user.accountBalance}</p>
+                    <h2 className="text-lg mt-4 userh2">This is your recent transactions</h2>
                     <ul>
                         {user.recentTransactions.slice(0, 5).map((tx, index) => (
                             <li key={index}>{tx.date} - ${tx.amount} ({tx.type})</li>

@@ -1,4 +1,3 @@
-// src/components/TransactionHistory.tsx
 import React, { useState } from 'react';
 import { useAppContext } from '../context/AppContext';
 
@@ -8,11 +7,11 @@ const TransactionHistory: React.FC = () => {
     const filteredTransactions = transactions.filter(tx => filterType === 'all' || tx.type === filterType);
 
     return (
-        <div>
-            <h1 className="text-2xl font-bold mb-4">Transaction History</h1>
+        <div className='pt-12'>
+            <h1 className="text-2xl text-white font-bold mb-4">Transaction History</h1>
             <div className="mb-4">
                 <select onChange={e => setFilterType(e.target.value as 'all' | 'credit' | 'debit')} className="border p-2">
-                    <option value="all">All Transactions</option>
+                    <option className="Option"value="all">All Transactions</option>
                     <option value="credit">Credit</option>
                     <option value="debit">Debit</option>
                 </select>
