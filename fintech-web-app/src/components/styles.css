@@ -14,11 +14,11 @@
 }
 
 .links.open {
-    display: block;
+    display: flex;
 }
 
 .toggle {
-    display:none;
+    display: none; 
 }
 
 @media (max-width: 768px) {
@@ -29,16 +29,19 @@
 
     .toggle {
         display: flex; 
+        font-size: 24px; 
+        background: none; 
+        border: none; 
+        color: white; 
+        cursor: pointer; 
     }
 
     .links.open {
-        display: none; 
+        display: flex;
     }
-} 
-
-
-
-
+   
+    
+}
 
 .active {
     font-weight: bold; 
@@ -47,6 +50,7 @@
     border-radius: 5px;
     align-items: center;
 }
+
 
 .userh2{
     color: whitesmoke;
